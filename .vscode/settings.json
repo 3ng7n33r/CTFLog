@@ -1,0 +1,13 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "${workspaceFolder:CTFLog}/db.sqlite3",
+            "name": "CTFLog"
+        }
+    ],
+    "files.associations": {
+        "*.html": "jinja-html"
+      },
+}
