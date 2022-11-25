@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Site, Campaign, CTF
+from .models import Site, Campaign, CTF, Favorite
 
 class CampaignInline(admin.TabularInline):
     model = Campaign
@@ -21,3 +21,4 @@ class CampaignAdmin(admin.ModelAdmin):
 admin.site.register(Site, SiteAdmin)
 admin.site.register(Campaign, CampaignAdmin)
 admin.site.register(CTF)
+admin.site.register(Favorite)

@@ -6,9 +6,7 @@ class Site(models.Model):
     url = models.URLField()
 
     def __str__(self):
-        if self.site:
-            return self.site
-        return self.site_url
+        return self.name
 
 
 class Campaign(models.Model):
