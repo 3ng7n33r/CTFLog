@@ -2,8 +2,8 @@ from django.db import models
 
 
 class Site(models.Model):
-    site = models.CharField(max_length=100)
-    site_url = models.URLField()
+    name = models.CharField(max_length=100)
+    url = models.URLField()
 
     def __str__(self):
         if self.site:

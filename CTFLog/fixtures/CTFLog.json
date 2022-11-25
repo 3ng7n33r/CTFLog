@@ -1,0 +1,106 @@
+[
+{
+  "model": "CTFLog.site",
+  "pk": 1,
+  "fields": {
+    "name": "Over The Wire",
+    "url": "https://overthewire.org/wargames/"
+  }
+},
+{
+  "model": "CTFLog.campaign",
+  "pk": 1,
+  "fields": {
+    "name": "Bandit",
+    "site": 1
+  }
+},
+{
+  "model": "CTFLog.campaign",
+  "pk": 2,
+  "fields": {
+    "name": "Natas",
+    "site": 1
+  }
+},
+{
+  "model": "CTFLog.campaign",
+  "pk": 3,
+  "fields": {
+    "name": "Leviathan",
+    "site": 1
+  }
+},
+{
+  "model": "CTFLog.campaign",
+  "pk": 4,
+  "fields": {
+    "name": "Krypton",
+    "site": 1
+  }
+},
+{
+  "model": "CTFLog.campaign",
+  "pk": 5,
+  "fields": {
+    "name": "Narnia",
+    "site": 1
+  }
+},
+{
+  "model": "CTFLog.campaign",
+  "pk": 6,
+  "fields": {
+    "name": "Behemoth",
+    "site": 1
+  }
+},
+{
+  "model": "CTFLog.campaign",
+  "pk": 7,
+  "fields": {
+    "name": "Utumno",
+    "site": 1
+  }
+},
+{
+  "model": "CTFLog.campaign",
+  "pk": 8,
+  "fields": {
+    "name": "Maze",
+    "site": 1
+  }
+},
+{
+  "model": "CTFLog.campaign",
+  "pk": 9,
+  "fields": {
+    "name": "Vortex",
+    "site": 1
+  }
+},
+{
+  "model": "CTFLog.campaign",
+  "pk": 10,
+  "fields": {
+    "name": "Manpage",
+    "site": 1
+  }
+},
+{
+  "model": "CTFLog.campaign",
+  "pk": 11,
+  "fields": {
+    "name": "Semtex",
+    "site": 1
+  }
+},
+{
+  "model": "CTFLog.campaign",
+  "pk": 12,
+  "fields": {
+    "name": "Drifter",
+    "site": 1
+  }
+}
+]

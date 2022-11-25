@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect
 from django.views.decorators.http import require_http_methods, require_safe
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm
+from .models import Site
 
 
 @require_http_methods(["GET", "POST"])
@@ -52,7 +53,8 @@ def register(request):
 @require_safe
 @login_required
 def index(request):
-    return render(request=request, template_name="CTFLog/index.html")
+    sites = Site.objects.all()
+    return render(request=request, template_name="CTFLog/index.html", context={"sites": sites})
 
 
 @login_required
