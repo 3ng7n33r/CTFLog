@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from .forms import NewUserForm
 from django.shortcuts import render, redirect
@@ -52,3 +53,10 @@ def register(request):
 @login_required
 def index(request):
     return render(request=request, template_name="CTFLog/index.html")
+
+
+@login_required
+def logout(request):
+    auth_logout(request)
+    messages.info(request, "You have successfully logged out.")
+    return redirect("login")
