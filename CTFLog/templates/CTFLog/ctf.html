@@ -1,0 +1,19 @@
+{% extends "CTFLog/sidebar.html" %}
+
+{% block title%}
+CTFLog - {{ ctf.name }}
+{% endblock %}
+
+{% block body %}
+<div class="container text-center">
+  <p>Used Commands (use "$ history X | xclip -selection c" for the last X commands): {{ ctf.commands }}</p>
+  <p>Notes: {{ ctf.notes }}</p>
+  <p>Password: {{ ctf.password }}</p>
+
+  <ul>
+    {% for ctf in ctfs %}
+    <li><a href="{{ ctf.get_absolute_url }}">{{ ctf.name }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

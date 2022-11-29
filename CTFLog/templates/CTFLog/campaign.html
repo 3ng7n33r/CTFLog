@@ -1,0 +1,16 @@
+{% extends "CTFLog/sidebar.html" %}
+
+{% block title%}
+CTFLog - {{ campaign.name }}
+{% endblock %}
+
+{% block body %}
+<div class="container text-center">
+  <h1 class="text-center">{{ campaign.name }}</h1>
+  <ul>
+    {% for ctf in ctfs %}
+    <li><a href="{{ ctf.get_absolute_url }}">{{ ctf.name }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}
