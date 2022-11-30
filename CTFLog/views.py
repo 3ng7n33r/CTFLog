@@ -8,6 +8,7 @@ from django.views.decorators.http import require_http_methods, require_safe
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from .models import Site, Favorite, Campaign, CTF
+from django.http import Http404
 
 
 @require_http_methods(["GET", "POST"])
@@ -116,22 +117,35 @@ def show_campaign(request, campaign_slug):
 @require_http_methods(["GET", "POST"])
 @login_required
 def show_ctf(request, ctf_slug):
-    if request.method == "POST":
-        # creator = request.user
-        # if public in POST
-        pass
-    else:
-        sites = Site.objects.all()
-        favorites = Favorite.objects.all()
+    # Fetch data for sidebar and template
+    sites = Site.objects.all()
+    favorites = Favorite.objects.all()
+    try:
         ctf = CTF.objects.get(slug=ctf_slug)
-        campaign_ctfs = CTF.objects.filter(campaign=ctf.campaign)
-        return render(
-            request=request,
-            template_name="CTFLog/ctf.html",
-            context={
-                "sites": sites,
-                "favorites": favorites,
-                "ctf": ctf,
-                "campaign_ctfs": campaign_ctfs,
-            },
-        )
+    except CTF.DoesNotExist:
+        raise Http404("CTF does not exist")
+    campaign_ctfs = CTF.objects.filter(campaign=ctf.campaign)
+
+    if request.method == "POST":
+        ctf.commands = request.POST["commands"]
+        ctf.notes = request.POST["notes"]
+        ctf.password = request.POST["password"]
+        ctf.public = True if "public" in request.POST else False
+        ctf.creator = request.user
+        ctf.save()
+
+        messages.info(request, f"You have succesfully updated {ctf.name}")
+
+    else:
+        ctf = CTF.objects.get(slug=ctf_slug)
+
+    return render(
+        request=request,
+        template_name="CTFLog/ctf.html",
+        context={
+            "sites": sites,
+            "favorites": favorites,
+            "ctf": ctf,
+            "campaign_ctfs": campaign_ctfs,
+        },
+    )
