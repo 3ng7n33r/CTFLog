@@ -7,6 +7,8 @@ class Site(models.Model):
     name = models.CharField(max_length=100)
     url = models.URLField()
     slug = models.SlugField(unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
@@ -24,6 +26,8 @@ class Campaign(models.Model):
     name = models.CharField(max_length=100)
     site = models.ForeignKey(Site, related_name="campaigns", on_delete=models.CASCADE)
     slug = models.SlugField(null=False, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
@@ -47,6 +51,8 @@ class CTF(models.Model):
     password = models.CharField(max_length=300, blank=True, null=True)
     public = models.BooleanField(default=False)
     slug = models.SlugField(unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
@@ -56,5 +62,7 @@ class CTF(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(f"{self.campaign.site.name}-{self.campaign.name}-{self.name}")
+            self.slug = slugify(
+                f"{self.campaign.site.name}-{self.campaign.name}-{self.name}"
+            )
         return super().save(*args, **kwargs)
