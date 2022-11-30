@@ -55,7 +55,11 @@ def register(request):
 def index(request):
     sites = Site.objects.all()
     favorites = Favorite.objects.all()
-    return render(request=request, template_name="CTFLog/index.html", context={"sites": sites, "favorites": favorites})
+    return render(
+        request=request,
+        template_name="CTFLog/index.html",
+        context={"sites": sites, "favorites": favorites},
+    )
 
 
 @login_required
@@ -75,7 +79,16 @@ def show_site(request, site_slug):
         favorites = Favorite.objects.all()
         campaignsite = Site.objects.get(slug=site_slug)
         campaigns = Campaign.objects.filter(site=campaignsite)
-        return render(request=request, template_name="CTFLog/site.html", context={"sites": sites, "favorites": favorites, "campaigns": campaigns, "campaignsite": campaignsite})
+        return render(
+            request=request,
+            template_name="CTFLog/site.html",
+            context={
+                "sites": sites,
+                "favorites": favorites,
+                "campaigns": campaigns,
+                "campaignsite": campaignsite,
+            },
+        )
 
 
 @require_http_methods(["GET", "POST"])
@@ -88,16 +101,37 @@ def show_campaign(request, campaign_slug):
         favorites = Favorite.objects.all()
         ctf_campaign = Campaign.objects.get(slug=campaign_slug)
         ctfs = CTF.objects.filter(campaign=ctf_campaign)
-        return render(request=request, template_name="CTFLog/campaign.html", context={"sites": sites, "favorites": favorites, "ctf_campaign": ctf_campaign, "ctfs": ctfs})
+        return render(
+            request=request,
+            template_name="CTFLog/campaign.html",
+            context={
+                "sites": sites,
+                "favorites": favorites,
+                "ctf_campaign": ctf_campaign,
+                "ctfs": ctfs,
+            },
+        )
 
 
 @require_http_methods(["GET", "POST"])
 @login_required
 def show_ctf(request, ctf_slug):
     if request.method == "POST":
+        # creator = request.user
+        # if public in POST
         pass
     else:
         sites = Site.objects.all()
         favorites = Favorite.objects.all()
         ctf = CTF.objects.get(slug=ctf_slug)
-        return render(request=request, template_name="CTFLog/ctf.html", context={"sites": sites, "favorites": favorites, "ctf": ctf})
+        campaign_ctfs = CTF.objects.filter(campaign=ctf.campaign)
+        return render(
+            request=request,
+            template_name="CTFLog/ctf.html",
+            context={
+                "sites": sites,
+                "favorites": favorites,
+                "ctf": ctf,
+                "campaign_ctfs": campaign_ctfs,
+            },
+        )

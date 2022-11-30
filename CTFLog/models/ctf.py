@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
+from django.contrib.auth import get_user_model
 
 
 class Site(models.Model):
@@ -51,7 +52,16 @@ class CTF(models.Model):
     password = models.CharField(max_length=300, blank=True, null=True)
     public = models.BooleanField(default=False)
     slug = models.SlugField(unique=True)
+    creator = models.ForeignKey(
+        get_user_model(), related_name="ctfs_created", on_delete=models.CASCADE
+    )
     created_at = models.DateTimeField(auto_now_add=True)
+    last_user = models.ForeignKey(
+        get_user_model(),
+        related_name="ctfs_modified",
+        on_delete=models.SET_NULL,
+        null=True,
+    )
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):

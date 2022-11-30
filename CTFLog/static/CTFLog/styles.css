@@ -18,33 +18,114 @@ body {
   background-color: #f5f5f5;
 }
 
-.form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
+/* ALIGNED FIELDSETS */
+
+.aligned label {
+  display: block;
+  padding: 4px 10px 0 0;
+  float: left;
+  width: 160px;
+  word-wrap: break-word;
+  line-height: 1;
 }
-.form-signin .checkbox {
-  font-weight: 400;
+
+.aligned label:not(.vCheckboxLabel):after {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  height: 26px;
 }
-.form-signin .form-control {
-  position: relative;
-  box-sizing: border-box;
-  height: auto;
-  padding: 10px;
-  font-size: 16px;
+
+.aligned label+p,
+.aligned label+div.help,
+.aligned label+div.readonly {
+  padding: 6px 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 170px;
+  overflow-wrap: break-word;
 }
-.form-signin .form-control:focus {
-  z-index: 2;
+
+.aligned ul label {
+  display: inline;
+  float: none;
+  width: auto;
 }
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+
+.aligned .form-row input {
+  margin-bottom: 0;
 }
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+
+.colMS .aligned .vLargeTextField,
+.colMS .aligned .vXMLLargeTextField {
+  width: 350px;
+}
+
+form .aligned ul {
+  margin-left: 160px;
+  padding-left: 10px;
+}
+
+form .aligned div.radiolist {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
+form .aligned p.help,
+form .aligned div.help {
+  clear: left;
+  margin-top: 0;
+  margin-left: 160px;
+  padding-left: 10px;
+}
+
+form .aligned label+p.help,
+form .aligned label+div.help {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+form .aligned p.help:last-child,
+form .aligned div.help:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+form .aligned input+p.help,
+form .aligned textarea+p.help,
+form .aligned select+p.help,
+form .aligned input+div.help,
+form .aligned textarea+div.help,
+form .aligned select+div.help {
+  margin-left: 160px;
+  padding-left: 10px;
+}
+
+form .aligned ul li {
+  list-style: none;
+}
+
+form .aligned table p {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.aligned .vCheckboxLabel {
+  float: none;
+  width: auto;
+  display: inline-block;
+  vertical-align: -3px;
+  padding: 0 0 5px 5px;
+}
+
+.aligned .vCheckboxLabel+p.help,
+.aligned .vCheckboxLabel+div.help {
+  margin-top: -4px;
+}
+
+.colM .aligned .vLargeTextField,
+.colM .aligned .vXMLLargeTextField {
+  width: 610px;
 }
 
