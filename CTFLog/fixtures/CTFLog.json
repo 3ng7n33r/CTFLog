@@ -4,7 +4,8 @@
   "pk": 1,
   "fields": {
     "name": "Over The Wire",
-    "url": "https://overthewire.org/wargames/"
+    "url": "https://overthewire.org/wargames/",
+    "slug": "over-the-wire"
   }
 },
 {
@@ -12,7 +13,8 @@
   "pk": 1,
   "fields": {
     "name": "Bandit",
-    "site": 1
+    "site": 1,
+    "slug": "over-the-wire-bandit"
   }
 },
 {
@@ -20,7 +22,8 @@
   "pk": 2,
   "fields": {
     "name": "Natas",
-    "site": 1
+    "site": 1,
+    "slug": "over-the-wire-natas"
   }
 },
 {
@@ -28,7 +31,8 @@
   "pk": 3,
   "fields": {
     "name": "Leviathan",
-    "site": 1
+    "site": 1,
+    "slug": "over-the-wire-leviathan"
   }
 },
 {
@@ -36,7 +40,8 @@
   "pk": 4,
   "fields": {
     "name": "Krypton",
-    "site": 1
+    "site": 1,
+    "slug": "over-the-wire-krypton"
   }
 },
 {
@@ -44,7 +49,8 @@
   "pk": 5,
   "fields": {
     "name": "Narnia",
-    "site": 1
+    "site": 1,
+    "slug": "over-the-wire-narnia"
   }
 },
 {
@@ -52,7 +58,8 @@
   "pk": 6,
   "fields": {
     "name": "Behemoth",
-    "site": 1
+    "site": 1,
+    "slug": "over-the-wire-behemoth"
   }
 },
 {
@@ -60,7 +67,8 @@
   "pk": 7,
   "fields": {
     "name": "Utumno",
-    "site": 1
+    "site": 1,
+    "slug": "over-the-wire-utumno"
   }
 },
 {
@@ -68,7 +76,8 @@
   "pk": 8,
   "fields": {
     "name": "Maze",
-    "site": 1
+    "site": 1,
+    "slug": "over-the-wire-maze"
   }
 },
 {
@@ -76,7 +85,8 @@
   "pk": 9,
   "fields": {
     "name": "Vortex",
-    "site": 1
+    "site": 1,
+    "slug": "over-the-wire-vortex"
   }
 },
 {
@@ -84,7 +94,8 @@
   "pk": 10,
   "fields": {
     "name": "Manpage",
-    "site": 1
+    "site": 1,
+    "slug": "over-the-wire-manpage"
   }
 },
 {
@@ -92,7 +103,8 @@
   "pk": 11,
   "fields": {
     "name": "Semtex",
-    "site": 1
+    "site": 1,
+    "slug": "over-the-wire-semtex"
   }
 },
 {
@@ -100,6 +112,28 @@
   "pk": 12,
   "fields": {
     "name": "Drifter",
+    "site": 1,
+    "slug": "over-the-wire-drifter"
+  }
+},
+{
+  "model": "CTFLog.ctf",
+  "pk": 1,
+  "fields": {
+    "campaign": 1,
+    "name": "1",
+    "commands": "exclude = ('slug',)",
+    "notes": "The first",
+    "password": "123",
+    "public": true,
+    "slug": "over-the-wirebandit1"
+  }
+},
+{
+  "model": "CTFLog.favorite",
+  "pk": 1,
+  "fields": {
+    "user": 2,
     "site": 1
   }
 }
