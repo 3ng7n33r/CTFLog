@@ -1,5 +1,6 @@
 {% extends "CTFLog/sidebar.html" %}
 {% load static %}
+{% load isnumeric %}
 
 {% block title%}
 CTFLog - {{ ctf.campaign.name }} {{ ctf.name }}
@@ -8,41 +9,44 @@ CTFLog - {{ ctf.campaign.name }} {{ ctf.name }}
 {% block body %}
 <div class="container">
   <h2>{{ ctf.campaign.name }} {{ ctf.name }}</h2>
-  <!--p>Used Commands (use "$ history X | xclip -selection c" for the last X commands): {{ ctf.commands }}</!--p>
-  <p>Notes: {{ ctf.notes }}</p>
-  <p>Password: {{ ctf.password }}</p> -->
-
   <form method="post">
     {% csrf_token %}
-    <div class="form-group">
+    <div class="form-group my-3">
       <label for="nameInput">Commands used:</label>
       <textarea type="text" name="commands" class="form-control" id="nameInput">{{ ctf.commands }}</textarea>
     </div>
-    <div class="form-group">
+    <p>Tip: use "$ history X | xclip -selection c" for the last X commands</p>
+    <div class="form-group my-3">
       <label for="notesInput">Notes:</label>
       <textarea class="form-control" name="notes" id="notesInput">{{ ctf.notes }}</textarea>
     </div>
-    <div class="form-group">
+    <div class="form-group my-3">
       <label for="passwordInput">Password:</label>
       <input type="text" class="form-control" name="password" id="passwordInput" value="{{ ctf.password }}">
     </div>
-    <div class="form-check">
+    <!--div class="form-check">
       <input class="form-check-input" type="checkbox" name="public" value="True" id="checkPublic" {% if ctf.public %}checked{% endif %}>
       <label class="form-check-label" for="checkPublic">Public</label>
-    </div>
-    <div class="form-group">
+    </div-->
+    <div class="form-group my-3">
       <button type="submit" class="btn btn-primary mb-3">Update</button>
+      <button type="reset" class="btn btn-secondary mb-3">Reset</button>
+      {% if ctf.name|isnumeric %}
+      <a href="/create-ctf/{{ ctf.campaign.slug }}/{{ ctf.name }}/">
+      {% else %}
+      <a href="/create-ctf/{{ ctf.campaign.slug }}/">
+      {% endif %}
+        <button type="button" class="btn btn-secondary mb-3 float-end">Next</button>
+      </a>
     </div>
   </form>
-</div>
-
-<div class="container position-absolute bottom-0 text-center">
-  <h2>Other CTF's from this campaign</h2>
-  <ul class="pagination justify-content-center">
+  {% if campaign_ctfs %}
+  <ul class="pagination justify-content-center ">
     {% for campaign_ctf in campaign_ctfs %}
     <li class="page-item"><a class="page-link" href="{{ campaign_ctf.get_absolute_url }}">{{ campaign_ctf.name }}</a>
     </li>
     {% endfor %}
   </ul>
+  {% endif %}
 </div>
 {% endblock %}

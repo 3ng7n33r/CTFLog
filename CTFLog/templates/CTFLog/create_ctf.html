@@ -1,0 +1,52 @@
+{% extends "CTFLog/sidebar.html" %}
+{% load static %}
+
+{% block title%}
+CTFLog - Create new ctf
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+  <h2>Create a new ctf</h2>
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-group my-3">
+      <label for="websiteInput">Website</label>
+      <input class="form-control" name="website" id="websiteInput" type="text" readonly
+        value="{{ campaign.site.name }}">
+    </div>
+    <div class="form-group my-3">
+      <label for="campaignInput">Campaign</label>
+      <input type="text" class="form-control" name="campaign" id="campaignInput" readonly
+        value="{{ campaign.name }}">
+    </div>
+    <div class="form-group my-3">
+      <label for="campaignInput">Name</label>
+      <input type="text" class="form-control" name="name" id="nameInput"
+        {% if ctf_int %}value="{{ ctf_int }}"{% endif %}>
+    </div>
+    <div class="form-group my-3">
+      <label for="nameInput">Commands used:</label>
+      <textarea type="text" name="commands" class="form-control" id="nameInput"></textarea>
+    </div>
+    <p>Tip: use "$ history X | xclip -selection c" for the last X commands</p>
+    <div class="form-group my-3">
+      <label for="notesInput">Notes:</label>
+      <textarea class="form-control" name="notes" id="notesInput"></textarea>
+    </div>
+    <div class="form-group my-3">
+      <label for="passwordInput">Password:</label>
+      <input type="text" class="form-control" name="password" id="passwordInput">
+    </div>
+    <!-- div class="form-check">
+      <input class="form-check-input" type="checkbox" name="public" value="True" id="checkPublic">
+      <label class="form-check-label" for="checkPublic">Public</label>
+    </!-->
+    <div class="form-group my-3">
+      <button type="submit" class="btn btn-primary mb-3">Create</button>
+      <button type="reset" class="btn btn-secondary mb-3">Reset</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

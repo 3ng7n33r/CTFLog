@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid vh-100">
         <div class="row flex-nowrap">
             <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
@@ -25,12 +25,12 @@
                         </li>
                         <li>
                             <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-flag"></i> <span class="ms-1 d-none d-sm-inline">Your CTF's</span>
+                                <i class="fs-4 bi-flag"></i> <span class="ms-1 d-none d-sm-inline">Sites</span>
                             </a>
                             <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
-                                {% for favorite in favorites %}
+                                {% for site in sites %}
                                 <li class="w-100">
-                                    <a href="{{ favorite.site.get_absolute_url }}" class="nav-link px-0 fs-6"> <span class="d-none fw-light d-sm-inline">&nbsp;- {{ favorite.site }}</span>
+                                    <a href="{{ site.get_absolute_url }}" class="nav-link px-0 fs-6"> <span class="d-none fw-light d-sm-inline">&nbsp;- {{ site.name }}</span>
                                     </a>
                                 </li>
                                 {% endfor %}

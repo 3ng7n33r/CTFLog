@@ -15,15 +15,30 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import login, register, index, logout, show_campaign, show_ctf, show_site
+from .views import (
+    login,
+    register,
+    index,
+    logout,
+    show_campaign,
+    show_ctf,
+    show_site,
+    create_ctf,
+    create_site,
+)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", index, name="index"),
-    path("login", login, name="login"),
+    path("login/", login, name="login"),
     path("register/", register, name="register"),
-    path("logout", logout, name="logout"),
-    path('site/<slug:site_slug>/', show_site, name="show_site"),
-    path('campaign/<slug:campaign_slug>/', show_campaign, name="show_campaign"),
-    path('ctf/<slug:ctf_slug>', show_ctf, name="show_ctf"),
+    path("logout/", logout, name="logout"),
+    path("site/<slug:site_slug>/", show_site, name="show_site"),
+    path("campaign/<slug:campaign_slug>/", show_campaign, name="show_campaign"),
+    path("ctf/<slug:ctf_slug>/", show_ctf, name="show_ctf"),
+    path("create-site/", create_site, name="create_site"),
+    path("create-ctf/<slug:campaign_slug>/", create_ctf, name="create_ctf"),
+    path(
+        "create-ctf/<slug:campaign_slug>/<int:ctf_int>/", create_ctf, name="create_ctf"
+    ),
 ]
