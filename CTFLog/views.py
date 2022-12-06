@@ -159,7 +159,7 @@ def show_campaign(request, campaign_slug):
     else:
         sites = Site.objects.all().order_by("name")
         ctf_campaign = Campaign.objects.get(slug=campaign_slug)
-        ctfs = CTF.objects.filter(campaign=ctf_campaign)
+        ctfs = CTF.objects.filter(campaign=ctf_campaign, creator=request.user)
         return render(
             request=request,
             template_name="CTFLog/campaign.html",
