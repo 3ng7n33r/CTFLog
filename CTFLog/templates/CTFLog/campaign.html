@@ -8,10 +8,14 @@ CTFLog - {{ ctf_campaign.name }}
 <div class="container text-center">
   <h1 class="text-center">{{ ctf_campaign.site.name }}</h2>
   <h2 class="text-center">{{ ctf_campaign.name }}</h2>
+  {% if ctfs %}
   <ul>
     {% for ctf in ctfs %}
     <li><a href="{{ ctf.get_absolute_url }}">{{ ctf.name }}</a></li>
     {% endfor %}
   </ul>
+  {% else %}
+  <p>You have not created any CTF's in this campaign yet</p>
+  {% endif %}
 </div>
 {% endblock %}

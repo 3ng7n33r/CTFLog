@@ -7,15 +7,17 @@ CTFLog
 {% block body %}
 <div class="container text-center">
   <h1 class="text-center">Welcome to CTFLog</h1>
-  <p>Choose from the sites already created by the community or add a new page</p>
-  <a href="create-site">
-    <button type="button" class="btn btn-primary"><i class="fs-4 bi-plus"></i></button>Create a new page
-  </a>
-  <p>Sites</p>
-  <ul>
+  <h2>Choose from the sites already created by the community or add a new page</h2>
+  <div class="list-group">
     {% for site in sites %}
-    <li><a href="{{ site.url }}">{{ site.name }}</a></li>
+    <div class="list-group-item list-group-item-action"><a href="{{ site.get_absolute_url }}">{{ site.name }}</a><a href="{{ site.url }}"><i class="bi bi-link-45deg"></i></a></div>
     {% endfor %}
-  </ul>
+
+  </div>
+  <br>
+  <a href="create-site" class="btn btn-primary">
+    <i class="bi bi-plus"></i>
+    Create a new page
+  </a>
 </div>
 {% endblock %}
