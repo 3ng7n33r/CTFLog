@@ -29,8 +29,14 @@ git clone https://github.com/3ng7n33r/CTFLog.git
 2. Navigate to the project directory:
 ```bash
 cd CTFLog
-```
+``` 
 3. Install the required packages:
+(Optional but recommended):
+- create a virtual environment:
+```bash
+virtualenv env
+```
+- Install the packages
 ```bash
 pip install -r requirements.txt
 ```
@@ -46,6 +52,11 @@ python manage.py runserver
 ```bash
 python manage.py loaddata CTFLog.json
 ```
+7. (Optional) If you want to contribute to the project or modify code for yourself, it is recommended to install the linter and autoformatter pre-commit hooks
+```
+pre-commit install
+```
+
 
 The project will be available at http://127.0.0.1:8000/.
 
@@ -61,3 +72,25 @@ Afterwards, past entries can be found in the sidebar
 
 This project is licensed under the [MIT License](LICENSE).
 
+## Inspiration
+
+The idea behind this project came from me trying to solve the bandit series of the over the wire website and having to restart over and over again because I misplaced the file I wrote the passwords into.
+I further realised during following playthroughs that I did not memorise certain techniques well. In some cases, I found solutions I was proud of but forgot what exactly they were. In the moment I was just too focused on pushing to the next level. This is why I wanted a simple application where I could store the commands I used to replay the ctf and the solution in my head, a notes section to explain the code in case it uses commands which I can not easily recognize and of course the password for the next section in case I wanted to continue where I left off.
+
+## Model design
+
+The Django models make it fairly easy to structure this logic into database tables. If we look into models/ctf.py we can see that the main models are site, campaign and ctf. Every model has a unique slug attribute which automatically gets generated from the name given during creation.
+With this slug, navigation to the exact part of the website is as easy as knowing the name of the ctf.
+The models/favorites.py section is a model that will be useful for future functionality. At the moment, a user sees only events created by himself. Something I would like to implement, should this ever become an actual website, would be a functionality for users to share solutions to ctf's they have already solved. If a  user found an elegant solution, one could favorite it to be able to keep track. This can also be seen in the "public" attribute of the ctf model which, at the moment, has no function but will distinguish between published ctf's and ctf's the user wants to keep private in the future.
+
+## Front end
+
+For the front end, I combined multiple Bootstrap templates into a responsive site with a sidebar. The design is kept minimalistic as functionality is the priority.
+
+## Users
+
+The users functionality is fairly uninteresting when run on a local machine as it can be expected to be run by only a single user. However, it is planned for this project to become a website where multiple users will be able to upload and share their solutions with one another. The Django user model has not been further modified at the moment.
+
+## Black and Flake8
+
+Black and Flake8 are the autoformatter and linter used in this project to make sure the stylerules are consistently followed. To make sure they are run before every commit with as little extra effort as possible, pre-commit hooks have been implemented as well.
