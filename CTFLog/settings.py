@@ -23,7 +23,9 @@ SECRET_KEY = ENV["SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "ctflog.eu.pythonanywhere.com"
+]
 
 
 # Application definition
