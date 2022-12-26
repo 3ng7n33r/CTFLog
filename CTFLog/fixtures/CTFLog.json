@@ -141,28 +141,5 @@
     "created_at": "2022-11-30T10:03:22.758Z",
     "updated_at": "2022-11-30T10:03:22.768Z"
   }
-},
-{
-  "model": "CTFLog.ctf",
-  "pk": 1,
-  "fields": {
-    "campaign": 1,
-    "name": "1",
-    "commands": "exclude = ('slug',)",
-    "notes": "The first",
-    "password": "123",
-    "public": true,
-    "slug": "over-the-wirebandit1",
-    "created_at": "2022-11-30T10:03:09.708Z",
-    "updated_at": "2022-11-30T10:03:22.785Z"
-  }
-},
-{
-  "model": "CTFLog.favorite",
-  "pk": 1,
-  "fields": {
-    "user": 2,
-    "site": 1
-  }
 }
 ]
