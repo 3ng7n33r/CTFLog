@@ -9,7 +9,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from .models import Site, Campaign, CTF
 from django.http import Http404
-
+from django.db import IntegrityError
 
 @require_http_methods(["GET", "POST"])
 def login(request):
@@ -216,30 +216,44 @@ def create_ctf(request, campaign_slug, ctf_int=0):
     if request.method == "POST":
         # create ctf
 
-        ctf = CTF()
+        try:
+            ctf = CTF()
 
-        ctf.campaign = campaign
-        ctf.name = request.POST["name"]
-        ctf.commands = request.POST["commands"]
-        ctf.notes = request.POST["notes"]
-        ctf.password = request.POST["password"]
-        ctf.public = True if "public" in request.POST else False
-        ctf.creator = request.user
-        ctf.save()
+            ctf.campaign = campaign
+            ctf.name = request.POST["name"]
+            ctf.commands = request.POST["commands"]
+            ctf.notes = request.POST["notes"]
+            ctf.password = request.POST["password"]
+            ctf.public = True if "public" in request.POST else False
+            ctf.creator = request.user
+            ctf.save()
 
-        campaign_ctfs = CTF.objects.filter(campaign=campaign)
+            campaign_ctfs = CTF.objects.filter(campaign=campaign)
 
-        messages.info(request, f"You have succesfully created {ctf.name}")
+            messages.info(request, f"You have succesfully created {ctf.name}")
 
-        return render(
-            request=request,
-            template_name="CTFLog/ctf.html",
-            context={
-                "sites": sites,
-                "ctf": ctf,
-                "campaign_ctfs": campaign_ctfs,
-            },
-        )
+            return render(
+                request=request,
+                template_name="CTFLog/ctf.html",
+                context={
+                    "sites": sites,
+                    "ctf": ctf,
+                    "campaign_ctfs": campaign_ctfs,
+                },
+            )
+        except IntegrityError as e:
+            messages.error(request, f"{e.message}.")
+            
+            return render(
+                request=request,
+                template_name="CTFLog/ctf.html",
+                context={
+                    "sites": sites,
+                    "ctf": ctf,
+                    "campaign_ctfs": campaign_ctfs,
+                },
+            )
+            
 
     else:
         if ctf_int:
