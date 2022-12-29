@@ -16,6 +16,10 @@ CTFLog - {{ ctf_campaign.name }}
   </ul>
   {% else %}
   <p>You have not created any CTF's in this campaign yet</p>
+    <a href="/create-ctf/{{ ctf_campaign.slug }}/" class="btn btn-primary">
+    <i class="bi bi-plus"></i>
+    Create a new ctf
+  </a>
   {% endif %}
 </div>
 {% endblock %}

@@ -24,7 +24,8 @@ SECRET_KEY = ENV["SECRET_KEY"]
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "ctflog.eu.pythonanywhere.com"
+    "ctflog.eu.pythonanywhere.com",
+    "127.0.0.1"
 ]
 
 
