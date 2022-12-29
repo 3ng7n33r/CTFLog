@@ -31,13 +31,15 @@ CTFLog - {{ ctf.campaign.name }} {{ ctf.name }}
     <div class="form-group my-3">
       <button type="submit" class="btn btn-primary mb-3">Update</button>
       <button type="reset" class="btn btn-secondary mb-3">Reset</button>
+      <button type="button" class="btn btn-secondary mb-3 float-end"
       {% if ctf.name|isnumeric %}
-      <a href="/create-ctf/{{ ctf.campaign.slug }}/{{ ctf.name }}/">
+      onclick='location.href="/create-ctf/{{ ctf.campaign.slug }}/{{ ctf.name }}/"'>
       {% else %}
-      <a href="/create-ctf/{{ ctf.campaign.slug }}/">
+      onclick='location.href="/create-ctf/{{ ctf.campaign.slug }}/"'>
       {% endif %}
-        <button type="button" class="btn btn-secondary mb-3 float-end">Next</button>
-      </a>
+        Next
+        </a></button>
+      
     </div>
   </form>
   {% if campaign_ctfs %}
